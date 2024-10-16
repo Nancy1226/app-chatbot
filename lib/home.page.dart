@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'profile.dart'; // Importa la página de inicio
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -134,68 +135,79 @@ class _HomePageState extends State<HomePage> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: _lightPurple,
-        elevation: 0,
-        toolbarHeight: 120,
-        flexibleSpace: SafeArea(
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
-                child: Row(
+          Widget build(BuildContext context) {
+          return Scaffold(
+            backgroundColor: Colors.white,
+            appBar: AppBar(
+              backgroundColor: _lightPurple,
+              elevation: 0, // Set the AppBar elevation here
+              toolbarHeight: 110, // Custom height for the AppBar
+              actions: <Widget>[
+                IconButton(
+                  icon: Icon(Icons.account_circle),
+                  onPressed: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => const profile()),
+                  );
+                  },
+                ),
+              ],
+              flexibleSpace: SafeArea(
+                child: Column(
                   children: [
-                    Image.asset(
-                      'asset/img/uplogo.jpg',
-                      height: 40,
-                      width: 40,
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
+                      child: Row(
+                        children: [
+                          Image.asset(
+                            'asset/img/uplogo.jpg',
+                            height: 40,
+                            width: 40,
+                          ),
+                          SizedBox(width: 12),
+                          Text(
+                            'ChatBot',
+                            style: TextStyle(
+                              color: _darkPurple,
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                    SizedBox(width: 12),
-                    Text(
-                      'ChatBot',
-                      style: TextStyle(
-                        color: _darkPurple,
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              'Nancy Guadalupe Jimenez Escobar - 221193',
+                              style: TextStyle(
+                                color: _darkPurple,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            child: Text(
+                              'Universidad Politécnica de Chiapas.   9°A',
+                              style: TextStyle(
+                                color: _darkPurple.withOpacity(0.7),
+                                fontSize: 14,
+                              ),
+                              textAlign: TextAlign.right,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ],
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Text(
-                        'Nancy Guadalupe Jimenez Escobar - 221193',
-                        style: TextStyle(
-                          color: _darkPurple,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      child: Text(
-                        'Universidad Politécnica de Chiapas.   9°A',
-                        style: TextStyle(
-                          color: _darkPurple.withOpacity(0.7),
-                          fontSize: 14,
-                        ),
-                        textAlign: TextAlign.right,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
+            ),
       body: Column(
         children: <Widget>[
           Expanded(
